@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block Content %}
+
+<div class="section p-5">
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text text-danger font-weight-bold" id="basic-addon1">Type Task </span>
+            <input type="text" class="form-control" placeholder="{{ task }}" name='task' value="{{ task }}" aria-label="Type Task"
+                aria-describedby="basic-addon1">
+        </div>
+        <input type="submit" class='btn-sm btn-danger' value="Update Task">
+    </form>
+
+    <div class="section mt-5">
+        <h6>Django 3.0.8</h6>
+        <ul class="list-group list-group-flush text-center">
+            <li class="list-group-item" id="li">Fast and Easy</li>
+            <li class="list-group-item" id="li">Quick Web Development</li>
+            <li class="list-group-item" id="li">Build in Python Language!</li>
+            <li class="list-group-item" id="li">Large Libraries</li>
+            <li class="list-group-item" id="li">Easy Database, Connectivity</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock Content %}

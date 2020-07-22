@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block Content %}
+
+<div class="section p-5">
+    <div class="messsage mb-2">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-0 mt-2" role="alert">
+                    <strong>Message : </strong> {{ message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text text-danger font-weight-bold" id="basic-addon1">Type Task </span>
+            <input type="text" class="form-control" placeholder="Tasks" name='task' aria-label="Type Task"
+                aria-describedby="basic-addon1">
+            <!-- <textarea class="form-control" aria-label="With textarea" name='task' placeholder="Task"></textarea> -->
+        </div>
+        <input type="submit" class='btn-sm btn-danger' value="Add Task">
+    </form>
+
+    <div class="taskList mt-3">
+        <div class="row">
+            {% for task in tasks %}
+            <div class="col-md-4">
+                <div class="card mt-2 mb-2"
+                    style="border-radius: 10%; background-color: rgb(219, 175, 117); color:white; border:none;">
+                    <div class="card-body text-center pl-2 pr-1">
+                        <div class="row">
+                            <div class="col-4">
+                                <p id='id' class="card-title text-light">Task #{{ task.todo_id }}</p>
+                            </div>
+                            <div class="col-8">
+                                <p href="#" class="" id='time' style="font-size: 11px;">{{ task.timeStamp }}</p>
+                            </div>
+                        </div>
+                        <p class="card-text" id="text" style="font-size: 14px;">{{ task.todo_task }}</p>
+                        <div class="row" id='crud'>
+                            <div class="col-6 pr-4">
+                                <a href="edit/{{ task.slug }}" class='text-danger'
+                                    style="font-size: 14px;text-decoration: none;">EDIT</a>
+                            </div>
+                            <div class="col-6 pr-4">
+                                <a href="remove/{{ task.slug }}" class='text-danger'
+                                    style="font-size: 14px; text-decoration: none;">REMOVE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock Content %}
